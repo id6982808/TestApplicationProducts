@@ -1,0 +1,225 @@
+`include "ALU.v"
+`include "Memory.v"
+`include "Registers.v" // Register File
+
+module Datapath( CK, CLR, ALUOp, ALUSrcA, ALUSrcB, IRWrite, IorD, MemRead, MemWrite, MemtoReg, PCSource, PCWrite, PCWriteCond, RegDst, RegWrite, Op);
+
+input   CK;  
+input   CLR;  
+input [1:0]  ALUOp;  
+input   ALUSrcA ;  
+input [2:0]  ALUSrcB ;  
+input   IRWrite ;  
+input   IorD ;  
+input   MemRead ;  
+input   MemWrite ;  
+input   MemtoReg ;  
+input [1:0]  PCSource ;  
+input   PCWrite ;  
+input   PCWriteCond ;  
+input   RegDst ;  
+input   RegWrite ;  
+output [5:0]  Op ;
+reg [5:0] Op;
+
+
+wire PCload;
+reg [31:0] out_PC;
+reg [31:0] out_mux3;
+reg [31:0] ALUOut;
+reg [31:0] out_mux2_1;
+reg [4:0] out_mux2_2;
+reg [31:0] out_mux2_3;
+reg [31:0] out_mux2_4;
+reg [31:0] out_mux5;
+reg [31:0] A;
+reg [31:0] B;
+reg [31:0] MDR;
+reg [5:0] out_InstReg_31_26;
+reg [4:0] out_InstReg_25_21;
+reg [4:0] out_InstReg_20_16;
+reg [15:0] out_InstReg_15_0;
+reg [25:0] out_InstReg_25_0;
+reg [4:0] out_InstReg_15_11;
+reg [31:0] out_sign_ext;
+reg [31:0] out_sign_ext_sl2;
+reg [31:0] out_zero_ext;
+reg [31:0] out_InstReg_25_0_sl2;
+reg [3:0] out_ALUcontrol;
+
+
+wire [31:0] from_ALU;
+wire from_ALU_zero;
+wire [3:0] from_ALUcontrol;
+wire [31:0] from_RF1;
+wire [31:0] from_RF2;
+wire [31:0] from_memory;
+
+
+
+// PCload
+assign PCload = PCWrite | ( from_ALU_zero & PCWriteCond );
+
+
+
+// PC
+always @(posedge CK)
+begin
+ if(CLR == 1'b1)
+  out_PC <= 32'h00000000;
+ else if(PCload == 1'b1)
+  out_PC <= out_mux3;
+ else ;
+end
+
+
+// Multiplexor 2 to 1 (1)
+always @(IorD or out_PC or ALUOut)
+begin
+ if(IorD == 1'b0) out_mux2_1 <= out_PC;
+ else if(IorD == 1'b1) out_mux2_1 <= ALUOut;
+ else ;
+end
+
+
+// Memory data
+Memory _memory(out_mux2_1, B, from_memory, MemWrite, MemRead, CK);
+
+
+// Instruction Register
+always @(IRWrite or from_memory)
+begin
+ if(IRWrite==1)
+ begin
+  out_InstReg_31_26 <= from_memory[31:26];
+  out_InstReg_25_21 <= from_memory[25:21];
+  out_InstReg_20_16 <= from_memory[20:16];
+  out_InstReg_15_0  <= from_memory[15:0];
+  out_InstReg_25_0  <= from_memory[25:0];
+  out_InstReg_15_11 <= from_memory[15:11];
+ end
+ else ;
+end
+
+
+// output Op
+always @(out_InstReg_31_26)
+begin
+ Op <= out_InstReg_31_26;
+end
+
+
+// Multiplexor 2 to 1 (2)
+always @(RegDst or out_InstReg_20_16 or out_InstReg_15_11)
+begin
+  if(RegDst == 1'b0) out_mux2_2 <= out_InstReg_20_16;
+  else if(RegDst == 1'b1) out_mux2_2 <= out_InstReg_15_11;
+  else ;
+end
+
+
+// Multiplexor 2 to 1 (3)
+always @(MemtoReg or ALUOut or MDR)
+begin
+  if(MemtoReg == 1'b0) out_mux2_3 <= ALUOut;
+  else if(MemtoReg == 1'b1) out_mux2_3 <= MDR;
+  else ;
+end
+
+
+// Memory Data Register
+always @(from_memory)
+begin
+ MDR <= from_memory;
+end
+
+
+// Register File
+Registers RegFile(out_InstReg_25_21, out_InstReg_20_16, out_mux2_3, RegWrite, out_mux2_2, CK, CLR, from_RF1, from_RF2);
+
+
+// A
+always
+begin @(from_RF1)
+ A <= from_RF1;
+end
+
+
+// B
+always
+begin @(from_RF2)
+ B <= from_RF2;
+end
+
+
+// Multiplexor 2 to 1 (4)
+always @(ALUSrcA or out_PC or A)
+begin
+  if(ALUSrcA == 1'b0) out_mux2_4 <= out_PC;
+  else if(ALUSrcA == 1'b1) out_mux2_4 <= A;
+  else ;
+end
+
+
+// sign extend
+always @(out_InstReg_15_0)
+begin
+ out_sign_ext <= {{16{out_InstReg_15_0[15]}},{out_InstReg_15_0[15:0]}};
+end
+
+
+// sign extend shift left 2
+always @(out_sign_ext)
+begin
+ out_sign_ext_sl2 <= {{out_sign_ext[29:0]},{2'b00}};
+end
+
+
+// zero extend
+always @(out_InstReg_15_0)
+begin
+ out_zero_ext <= {{16'd0},{out_InstReg_15_0[15:0]}};
+end
+
+
+// Multiplexor 5 to 1
+always @(ALUSrcB or B or out_sign_ext or out_sign_ext_sl2 or out_zero_ext)
+begin
+  if(ALUSrcB == 3'b000) out_mux5 <= B;
+  else if(ALUSrcB == 3'b001) out_mux5 <= 32'd4;
+  else if(ALUSrcB == 3'b010) out_mux5 <= out_sign_ext;
+  else if(ALUSrcB == 3'b011) out_mux5 <= out_sign_ext_sl2;
+  else if(ALUSrcB == 3'b100) out_mux5 <= out_zero_ext;
+  else ;
+end
+
+
+// ALU
+ALU alu(out_mux2_4, out_mux5, from_ALUcontrol, from_ALU, from_ALU_zero);
+
+
+// ALUOut register
+always @(from_ALU)
+begin
+ ALUOut <= from_ALU;
+end
+
+
+// InstReg 25_0 shift left 2
+always @(out_InstReg_25_0)
+begin
+ out_InstReg_25_0_sl2 <= {{out_PC[31:28]},{out_InstReg_25_0[25:0]},{2'b00}};
+end
+
+
+// Multiplexor 3 to 1
+always @(PCSource or from_ALU or ALUOut or out_InstReg_25_0_sl2)
+begin
+  if(PCSource == 2'b00) out_mux3 <= from_ALU;
+  else if(PCSource == 2'b01) out_mux3 <= ALUOut;
+  else if(PCSource == 2'b10) out_mux3 <= out_InstReg_25_0_sl2;
+  else ;
+end
+
+
+endmodule

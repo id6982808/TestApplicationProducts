@@ -1,0 +1,74 @@
+Host command: /usr/local/cadence6/IUS5.8/tools/verilog/bin/verilog.exe
+Command arguments:
+    ALUtestbench.v
+
+Tool:	VERILOG-XL	05.83.003-p log file created Apr 20, 2012  11:29:17
+Tool:	VERILOG-XL	05.83.003-p   Apr 20, 2012  11:29:17
+
+Copyright (c) 1995-2004 Cadence Design Systems, Inc.  All Rights Reserved.
+Unpublished -- rights reserved under the copyright laws of the United States.
+
+Copyright (c) 1995-2004 UNIX Systems Laboratories, Inc.  Reproduced with Permission.
+
+THIS SOFTWARE AND ON-LINE DOCUMENTATION CONTAIN CONFIDENTIAL INFORMATION
+AND TRADE SECRETS OF CADENCE DESIGN SYSTEMS, INC.  USE, DISCLOSURE, OR
+REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF
+CADENCE DESIGN SYSTEMS, INC.
+RESTRICTED RIGHTS LEGEND
+
+Use, duplication, or disclosure by the Government is subject to
+restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+Technical Data and Computer Software clause at DFARS 252.227-7013 or
+subparagraphs (c)(1) and (2) of Commercial Computer Software -- Restricted
+Rights at 48 CFR 52.227-19, as applicable.
+
+                Cadence Design Systems, Inc.
+                555 River Oaks Parkway
+                San Jose, California  95134
+
+For technical assistance please contact the Cadence Response Center at
+1-877-CDS-4911 or send email to support@cadence.com
+
+For more information on Cadence's Verilog-XL product line send email to
+talkv@cadence.com
+
+Compiling source file "ALUtestbench.v"
+Compiling included source file "ALU.v"
+Continuing compilation of source file "ALUtestbench.v"
+Highest level modules:
+ALUtestbench
+
+                 100 ALUoperation=0, A=00000000, B=00000000, ALUresult=00000000, Zero=1
+                 200 ALUoperation=0, A=0f0f0f0f, B=f0f0f0f0, ALUresult=00000000, Zero=1
+                 300 ALUoperation=0, A=f0f0f0f0, B=0f0f0f0f, ALUresult=00000000, Zero=1
+                 400 ALUoperation=0, A=ffffffff, B=ffffffff, ALUresult=ffffffff, Zero=0
+                 500 ALUoperation=0, A=d8a3b8d4, B=63b9d6f2, ALUresult=40a190d0, Zero=0
+                 600 ALUoperation=1, A=00000000, B=00000000, ALUresult=00000000, Zero=1
+                 700 ALUoperation=1, A=0f0f0f0f, B=f0f0f0f0, ALUresult=ffffffff, Zero=0
+                 800 ALUoperation=1, A=f0f0f0f0, B=0f0f0f0f, ALUresult=ffffffff, Zero=0
+                 900 ALUoperation=1, A=ffffffff, B=ffffffff, ALUresult=ffffffff, Zero=0
+                1000 ALUoperation=1, A=d8a3b8d4, B=63b9d6f2, ALUresult=fbbbfef6, Zero=0
+                1100 ALUoperation=2, A=00000000, B=00000000, ALUresult=00000000, Zero=1
+                1200 ALUoperation=2, A=0f0f0f0f, B=f0f0f0f0, ALUresult=ffffffff, Zero=0
+                1300 ALUoperation=2, A=7fffffff, B=00000001, ALUresult=80000000, Zero=0
+                1400 ALUoperation=2, A=ffffffff, B=00000001, ALUresult=00000000, Zero=1
+                1500 ALUoperation=2, A=d8a3b8d4, B=63b9d6f2, ALUresult=3c5d8fc6, Zero=0
+                1600 ALUoperation=6, A=00000000, B=00000000, ALUresult=00000000, Zero=1
+                1700 ALUoperation=6, A=00000000, B=00000001, ALUresult=ffffffff, Zero=0
+                1800 ALUoperation=6, A=00000001, B=80000001, ALUresult=80000000, Zero=0
+                1900 ALUoperation=6, A=00000001, B=00000001, ALUresult=00000000, Zero=1
+                2000 ALUoperation=6, A=d8a3b8d4, B=63b9d6f2, ALUresult=74e9e1e2, Zero=0
+                2100 ALUoperation=7, A=00000000, B=00000000, ALUresult=00000000, Zero=1
+                2200 ALUoperation=7, A=00000000, B=00000001, ALUresult=00000001, Zero=0
+                2300 ALUoperation=7, A=00000001, B=80000001, ALUresult=00000000, Zero=1
+                2400 ALUoperation=7, A=00000001, B=00000001, ALUresult=00000000, Zero=1
+                2500 ALUoperation=7, A=d8a3b8d4, B=63b9d6f2, ALUresult=00000001, Zero=0
+                2600 ALUoperation=c, A=00000000, B=00000000, ALUresult=ffffffff, Zero=0
+                2700 ALUoperation=c, A=0f0f0f0f, B=ffffffff, ALUresult=00000000, Zero=1
+                2800 ALUoperation=c, A=f0f0f0f0, B=0f0f0f0f, ALUresult=00000000, Zero=1
+                2900 ALUoperation=c, A=ffffffff, B=ffffffff, ALUresult=00000000, Zero=1
+                3000 ALUoperation=c, A=d8a3b8d4, B=63b9d6f2, ALUresult=04440109, Zero=0
+L169 "ALUtestbench.v": $finish at simulation time 3000000
+0 simulation events (use +profile or +listcounts option to count)
+CPU time: 0.0 secs to compile + 0.1 secs to link + 0.0 secs in simulation
+End of Tool:	VERILOG-XL	05.83.003-p   Apr 20, 2012  11:29:18

@@ -1,0 +1,312 @@
+`include "ALU.v"
+`include "Memory.v"
+`include "Registers.v" // Register File
+
+module Datapath( CK, CLR, ALUOp, ALUSrcA, ALUSrcB, IRWrite, IorD, MemRead, MemWrite, MemtoReg, PCSource, PCWrite, PCWriteCond, RegDst, RegWrite, Op);
+input   CK;  
+input   CLR;  
+input [1:0]  ALUOp;  
+input   ALUSrcA ;  
+input [2:0]  ALUSrcB ;  
+input   IRWrite ;  
+input   IorD ;  
+input   MemRead ;  
+input   MemWrite ;  
+input   MemtoReg ;  
+input [1:0]  PCSource ;  
+input   PCWrite ;  
+input   PCWriteCond ;  
+input   RegDst ;  
+input   RegWrite ;  
+output [5:0]  Op ;
+reg [5:0] Op;
+
+reg [31:0] mem_reg;
+reg [31:0] A;
+reg [31:0] B;
+reg [31:0] ALUOut;
+
+wire [31:0] from_PC;
+wire PCload;
+wire [31:0] from_multiplexor3to1;
+wire [31:0] from_ALU;
+wire [31:0] from_ALUOut;
+wire [27:0] from_sl2;
+wire [31:0] from_sl2ext;
+wire from_ALU_zero;
+wire [31:0] from_multiplexor2to1_1;
+wire [4:0] from_multiplexor2to1_2;
+wire [31:0] from_multiplexor2to1_3;
+wire [31:0] from_multiplexor2to1_4;
+wire [31:0] from_multiplexor5to1;
+wire [3:0] from_ALUcontrol;
+wire [31:0] from_memory;
+wire [31:0] from_A;
+wire [31:0] from_B;
+wire [31:0] from_RegisterFile1;
+wire [31:0] from_RegisterFile2;
+wire [5:0] from_Inst_31_26;
+wire [4:0] from_Inst_25_21;
+wire [4:0] from_Inst_20_16;
+wire [15:0] from_Inst_15_0;
+wire [25:0] from_Inst_25_0;
+wire [4:0] from_Inst_15_11;
+wire [31:0] from_sign_extension;
+wire [31:0] from_sign_extension_2shiftedleft;
+wire [31:0] from_zero_extension;
+
+
+assign from_ALUOut = ALUOut;
+assign from_A = A;
+assign from_B = B;
+assign from_sign_extension = {{16{from_Inst_15_0[15]}},{from_Inst_15_0[15:0]}};
+assign from_zero_extension = {{16'd0},{from_Inst_15_0[15:0]}};
+ShiftLeft2_2 sl2_2(from_sign_extension ,from_sign_extension_2shiftedleft);
+assign PCload = PCWrite | ( from_ALU_zero & PCWriteCond );
+
+always @(from_memory)
+begin
+ mem_reg <= from_memory;
+end
+
+always @(from_RegisterFile1 or from_RegisterFile2)
+begin
+ A <= from_RegisterFile1;
+ B <= from_RegisterFile2;
+end
+
+always @(from_ALU)
+begin
+ ALUOut <= from_ALU;
+end
+
+always @(from_Inst_31_26)
+begin
+ Op = from_Inst_31_26;
+end
+
+
+ProgramCounter PC(CK ,CLR ,PCload ,from_multiplexor3to1 ,from_PC);
+
+Multiplexor2to1 Mul2to1_1(IorD ,from_PC ,from_ALUOut ,from_multiplexor2to1_1);
+
+Memory memory(from_multiplexor2to1_1 ,from_B ,from_memory ,MemWrite ,MemRead ,CK);
+
+InstructionRegister InstReg(IRWrite ,from_memory ,from_Inst_31_26 ,from_Inst_25_21 ,from_Inst_20_16 ,from_Inst_15_0 ,from_Inst_25_0 ,from_Inst_15_11);
+
+Multiplexor2to1_2 Mul2to1_2(RegDst ,from_Inst_20_16 ,from_Inst_15_11 ,from_multiplexor2to1_2);
+
+Multiplexor2to1_3 Mul2to1_3(MemtoReg ,from_ALUOut ,from_memory ,from_multiplexor2to1_3);
+
+Registers RegFile(from_Inst_25_21 ,from_Inst_20_16 ,from_multiplexor2to1_3 ,RegWrite ,from_multiplexor2to1_2 ,CK ,CLR ,from_RegisterFile1 ,from_RegisterFile2);
+
+Multiplexor2to1_4 Mul2to1_4(ALUSrcA ,from_PC ,from_A ,from_multiplexor2to1_4);
+
+Multiplexor5to1 Mul5to1(ALUSrcB ,from_B ,from_sign_extension ,from_sign_extension_2shiftedleft ,from_zero_extension ,from_multiplexor5to1);
+
+assign from_sl2ext = {{PC.dst[31:28]},{from_sl2[27:0]}};
+
+ShiftLeft2 sl2(from_Inst_25_0 ,from_sl2);
+
+ALU alu(from_multiplexor2to1_4 ,from_multiplexor5to1 ,from_ALUcontrol ,from_ALU ,from_ALU_zero); // this needs control unit
+
+Multiplexor3to1 Mul3to1(PCSource ,from_ALU ,from_ALUOut ,from_sl2ext ,from_multiplexor3to1);
+
+
+
+endmodule
+
+
+// Program Counter
+module ProgramCounter(src1 ,src2 ,src3 ,src4 ,dst);
+input src1;        // CK
+input src2;        // CLR
+input src3;        // PCload
+input [31:0] src4; // output of multiplexor 3 to 1
+output [31:0] dst;
+reg [31:0] dst;
+
+always @(posedge src1)
+begin
+ if(src2 == 1'b1)
+  dst <= 32'h00000000;
+ else if(src3 == 1'b1)
+  dst <= src4;
+end
+endmodule
+
+
+// Shift left 2
+module ShiftLeft2(src ,dst);
+input [25:0] src;
+output [27:0] dst;
+reg [27:0] dst;
+
+always @(src)
+begin
+ dst = {{src[25:0]},{2'b00}};
+end
+endmodule
+
+
+// Shift left 2 (32 bits)
+module ShiftLeft2_2(src ,dst);
+input [31:0] src;
+output [31:0] dst;
+reg [31:0] dst;
+
+always @(src)
+begin
+ dst = {{src[29:0]},{2'b00}};
+end
+endmodule
+
+
+// Multiplexor 2 to 1 No.1 (input = 32 bits)
+module Multiplexor2to1(src1 ,src2 ,src3 ,dst);
+input src1; // "IorD"
+input [31:0] src2; // PC
+input [31:0] src3; // ALUOut
+output [31:0] dst; 
+reg [31:0] dst;
+
+always @(src1 or src2 or src3)
+begin
+ case(src1)
+  1'b0: dst <= src2;
+  1'b1: dst <= src3;
+ endcase
+end
+endmodule
+
+
+// Multiplexor 2 to 1 No.2 (input = 4 bits)
+module Multiplexor2to1_2(src1 ,src2 ,src3 ,dst);
+input src1;       // "RegDst"
+input [4:0] src2; // output of InstReg[20:16]
+input [4:0] src3; // output of InstReg[15:11]
+output [4:0] dst;
+reg [4:0] dst;
+
+always @(src1 or src2 or src3)
+begin
+ case(src1)
+  1'b0: dst <= src2;
+  1'b1: dst <= src3;
+ endcase
+end
+endmodule
+
+
+// Multiplexor 2 to 1 No.3 (input = 32 bits)
+module Multiplexor2to1_3(src1 ,src2 ,src3 ,dst);
+input src1; // "MemtoReg"
+input [31:0] src2; // output of ALUOut
+input [31:0] src3; // output of memory
+output [31:0] dst; 
+reg [31:0] dst;
+
+always @(src1 or src2 or src3)
+begin
+ case(src1)
+  1'b0: dst <= src2;
+  1'b1: dst <= src3;
+ endcase
+end
+endmodule
+
+
+// Multiplexor 2 to 1 No.4 (input = 32 bits)
+module Multiplexor2to1_4(src1 ,src2 ,src3 ,dst);
+input src1; // "ALUSrcA"
+input [31:0] src2; // output of PC
+input [31:0] src3; // output of A
+output [31:0] dst; 
+reg [31:0] dst;
+
+always @(src1 or src2 or src3)
+begin
+ case(src1)
+  1'b0: dst <= src2;
+  1'b1: dst <= src3;
+ endcase
+end
+endmodule
+
+
+// Multiplexor 3 to 1
+module Multiplexor3to1(src1, src2, src3, src4, dst);
+input [1:0] src1;  // "PCSource"
+input [31:0] src2; // output of ALU
+input [31:0] src3; // output of ALUOut
+input [31:0] src4; // output of left shift2
+output [31:0] dst;
+reg [31:0] dst;
+
+always @(src1 or src2 or src3 or src4)
+begin
+ case(src1)
+  2'b00: dst <= src2;
+  2'b01: dst <= src3;
+  2'b10: dst <= src4;
+ endcase
+end
+endmodule
+
+
+// Multiplexor 5 to 1
+module Multiplexor5to1(src1, src2, src3, src4, src5, dst);
+input [2:0] src1;  // "ALUSrcB" 
+input [31:0] src2; // output of B
+input [31:0] src3; // output of extension 32 bits
+input [31:0] src4; // output of left shift 2 of src3
+input [31:0] src5; // output of zero extend
+output [31:0] dst;
+reg [31:0] dst;
+
+always @(src1 or src2 or src3 or src4 or src5)
+begin
+ case(src1)
+  3'b000: dst <= src2;
+  3'b001: dst <= 32'h00000004;
+  3'b010: dst <= src3;
+  3'b011: dst <= src4;
+  3'b100: dst <= src5;
+ endcase
+end
+endmodule
+
+
+// Instruction Register
+module InstructionRegister(src1 ,src2 ,dst1 ,dst2 ,dst3 ,dst4 ,dst_ex1 ,dst_ex2);
+input src1;            // "IRWrite"
+input [31:0] src2;     // output of memory
+output [5:0] dst1;     // [31:26] 
+output [4:0] dst2;     // [25:21]
+output [4:0] dst3;     // [20:16]
+output [15:0] dst4;    // [15:0]
+output [25:0] dst_ex1; // extend [25:0]
+output [4:0] dst_ex2;  // extend [15:11] 
+
+reg [5:0] dst1;     // [31:26] 
+reg [4:0] dst2;     // [25:21]
+reg [4:0] dst3;     // [20:16]
+reg [15:0] dst4;    // [15:0]
+reg [25:0] dst_ex1; // extend [25:0]
+reg [4:0] dst_ex2;  // extend [15:11] 
+
+always @(src1)
+begin
+ case(src1)
+  1'b1:
+   begin
+    dst1 <= src2[31:26];
+    dst2 <= src2[25:21];
+    dst3 <= src2[20:16];
+    dst4 <= src2[15:0];
+    dst_ex1 <= src2[25:0];
+    dst_ex2 <= src2[15:11];
+   end
+ endcase
+end
+endmodule
