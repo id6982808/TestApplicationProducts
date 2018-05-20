@@ -1,0 +1,72 @@
+-2013/05/29
+N=1024
+ramda=1.0e-30
+n*h=10.0
+TD local: short-renorm4(add,sub), no-renorm4(mul,duv)
+TD ocl arith.: no-renorm4(mul,div)
+QD ocl arith.: -
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+double precision:        1.172727106760481245223735153812572e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38900970615702049741567743709781025e-07
+full loop time: 78 sec.
+opencl time:    10.3 sec.
+
+double-double precision: 2.47997598189444856136603939166825744e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08176083102305318127337319924209791e-07
+full loop time: 252 sec.
+opencl time:    21.4 sec.
+
+triple-double precision: 3.55655996929019407639829136706426023e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     5.17684362730766624112122384612204668e-10
+full loop time: 313 sec.
+opencl time:    33.9 sec.
+
+quad-double precision:   3.54684790213487038680765469541881150e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889107826313558317578954915707825e-09
+full loop time: 387 sec.
+opencl time:    78.4 sec.
+
+-----------------------------------------------------------------------
+
+N=1024
+ramda=1.0e-30
+n*h=10.0
+TD local: short-renorm4(add,sub), no-renorm4(mul,duv)
+TD ocl arith.: no-renorm4(mul,div)
+QD ocl arith.: -
+
+nakamura@sandy:./compile.bash 
+nakamura@sandy:./main.amd 
+N = 1024
+ramda = 1e-30
+N * h = 10
+double precision:        1.1727271017391030419398540449518742e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38900971117839870069955854595850809e-07
+full loop time: 694 sec.
+opencl time:    27.7 sec.
+
+double-double precision: 2.47997598189444856136603909837702054e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08176083102305318127337349253334572e-07
+full loop time: 2.06e+03 sec.
+opencl time:    125 sec.
+
+triple-double precision: 3.55655994043497922391228555310799972e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     5.17687248252251872712703780238255387e-10
+full loop time: 2.14e+03 sec.
+opencl time:    175 sec.
+
+quad-double precision:   3.54684788788730755014433001709482214e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941924950825738155601359e-09
+full loop time: 2.46e+03 sec.
+opencl time:    467 sec.
+

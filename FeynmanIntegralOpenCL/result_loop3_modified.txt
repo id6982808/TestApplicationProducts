@@ -1,0 +1,220 @@
+-2013/06/06
+TD ocl arith.: short-renorm4(add,sub), no-renorm4(mul,div), fma
+QD ocl arith.: fma
+(cayman, AMD FX(tm)-8150 Eight-Core Processor)
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 2048
+ramda = 1e-30
+N * h = 13
+double precision:        1.1756802594434957736806358257267147e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38605655347400596895877676518366762e-07
+full loop time: 5.08 sec.
+opencl time:    5.08 sec.
+GDflop/s:       64.306173
+
+double-double precision: 2.49710969973093396598718578765697301e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.06462711318656777665222680325341999e-07
+full loop time: 38.6 sec.
+opencl time:    38.6 sec.
+GDDflop/s:        8.464597
+
+triple-double precision: 3.55656846786283077738747872559671364e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     5.16834505467096525193386531366864066e-10
+full loop time: 51 sec.
+opencl time:    51 sec.
+GTDflop/s:        6.403737
+
+quad-double precision:   3.55656846786283077687695217057736849e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     5.16834505467096576246042033301378852e-10
+full loop time: 898 sec.
+opencl time:    898 sec.
+GQDflop/s:        0.363699
+
+-------------------------------------------------
+
+-2013/06/07
+DD ocl arith.: fma
+TD ocl arith.: short-renorm4(add,sub), no-renorm4(mul,div), fma
+QD ocl arith.: fma
+(cayman, AMD FX(tm)-8150 Eight-Core Processor)
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 256
+ramda = 1e-30
+N * h = 10
+double precision:        1.1623273808264071173619911376759251e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.39940943209109462527742145323445722e-07
+full loop time: 0.0913 sec.
+opencl time:    0.0907 sec.
+GDflop/s:       7.038165
+
+double-double precision: 2.44145789394574407424428079530055555e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.12027891897175766839513179560983059e-07
+full loop time: 0.297 sec.
+opencl time:    0.296 sec.
+GDDflop/s:        2.155862
+
+triple-double precision: 3.53353365060180824982657776076584320e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.82031623156934928128348301445390734e-09
+full loop time: 0.799 sec.
+opencl time:    0.798 sec.
+GTDflop/s:        0.799825
+
+quad-double precision:   3.53353365060180824925724918467013746e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.82031623156934933821634062402448179e-09
+full loop time: 14.5 sec.
+opencl time:    14.5 sec.
+GQDflop/s:        0.043951
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38642288573702701500321659253168361e-07
+full loop time: 0.328 sec.
+opencl time:    0.327 sec.
+GDflop/s:       15.607175
+
+double-double precision: 2.46700796142038714941920467435380244e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459322020791655659096e-07
+full loop time: 1.19 sec.
+opencl time:    1.19 sec.
+GDDflop/s:        4.298128
+
+triple-double precision: 3.55227452445246279657904982829289017e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894606036276261749210568e-10
+full loop time: 3.19 sec.
+opencl time:    3.19 sec.
+GTDflop/s:        1.599874
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 57.4 sec.
+opencl time:    57.4 sec.
+GQDflop/s:        0.088859
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 768
+ramda = 1e-30
+N * h = 10
+double precision:        1.1816425965106140446397549933349458e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38009421640688769799965759757543649e-07
+full loop time: 0.728 sec.
+opencl time:    0.727 sec.
+GDflop/s:       23.674774
+
+double-double precision: 2.50827123138919213445179630080775945e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.05346558152830960818761629010263306e-07
+full loop time: 2.67 sec.
+opencl time:    2.67 sec.
+GDDflop/s:        6.448998
+
+triple-double precision: 3.55469117520390321630237118067241755e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     7.04563771359852633704141023796472456e-10
+full loop time: 7.17 sec.
+opencl time:    7.17 sec.
+GTDflop/s:        2.400527
+
+quad-double precision:   3.55469117520390321719457503716020633e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     7.04563771359852544483755375017594427e-10
+full loop time: 130 sec.
+opencl time:    130 sec.
+GQDflop/s:        0.132334
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1024
+ramda = 1e-30
+N * h = 10
+double precision:        1.1727271017391030419398540449518742e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38900971117839870069955854595850809e-07
+full loop time: 1.28 sec.
+opencl time:    1.28 sec.
+GDflop/s:       31.874005
+
+double-double precision: 2.47997598189444856136804521137572826e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08176083102305318127136737953461192e-07
+full loop time: 4.75 sec.
+opencl time:    4.75 sec.
+GDDflop/s:        8.599802
+
+triple-double precision: 3.54684788788730755062809357388935837e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941920113190170210239062e-09
+full loop time: 12.8 sec.
+opencl time:    12.7 sec.
+GTDflop/s:        3.201138
+
+quad-double precision:   3.54684788788730755014433001709482214e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941924950825738155601359e-09
+full loop time: 230 sec.
+opencl time:    230 sec.
+GQDflop/s:        0.177814
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1536
+ramda = 1e-30
+N * h = 10
+double precision:        1.1782160130902129936632293308318431e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38352079982728874897618326007853918e-07
+full loop time: 2.86 sec.
+opencl time:    2.86 sec.
+GDflop/s:       48.099289
+
+double-double precision: 2.50043559610091530336841126796057431e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.06130121681658643927100132294983319e-07
+full loop time: 10.7 sec.
+opencl time:    10.7 sec.
+GDDflop/s:        12.901667
+
+triple-double precision: 3.55809743750177620320964502736328503e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     3.63937541572553942976756354709724440e-10
+full loop time: 28.7 sec.
+opencl time:    28.7 sec.
+GTDflop/s:        4.802487
+
+quad-double precision:   3.55809743750177620378502556270320275e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     3.63937541572553885438702820717953205e-10
+full loop time: 504 sec.
+opencl time:    504 sec.
+GQDflop/s:        0.273252
+
+
+(K20C, Intel(R) Xeon(R) CPU E3-1220 V2 @ 3.10GHz)
+
+
+

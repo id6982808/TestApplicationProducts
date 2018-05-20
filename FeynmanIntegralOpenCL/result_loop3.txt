@@ -1,0 +1,675 @@
+-2013/06/05
+TD local: -
+TD ocl arith.: -
+QD ocl arith.: -
+
+(Tesla K20C)
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1850690066756156644356510077714661e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.37666780624188607820376158313891613e-07
+full loop time: 0.456 sec.
+opencl time:    0.456 sec.
+GDflop/s:       11.190613
+
+double-double precision: 2.46700796142038714911753390205575173e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459352187868885464704e-07
+full loop time: 2.56 sec.
+opencl time:    2.56 sec.
+GDDflop/s:        1.992346
+
+triple-double precision: 3.55227452445246279721495201068134336e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894542446058022903892215e-10
+full loop time: 28.6 sec.
+opencl time:    28.6 sec.
+GTDflop/s:        0.178231
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 31.8 sec.
+opencl time:    31.8 sec.
+GQDflop/s:        0.160287
+
+-------------------------------------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 1024
+ramda = 1e-30
+N * h = 10
+double precision:        1.1786499987079746238976488831307066e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38308681420952711874176370777967571e-07
+full loop time: 1.85 sec.
+opencl time:    1.85 sec.
+GDflop/s:       22.075520
+
+double-double precision: 2.47997598189444856129949950654908411e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08176083102305318133991308436127232e-07
+full loop time: 10.3 sec.
+opencl time:    10.3 sec.
+GDDflop/s:        3.974373
+
+triple-double precision: 3.54684788788730753992713172580607481e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301942027122808651043074686e-09
+full loop time: 51 sec.
+opencl time:    51 sec.
+GTDflop/s:        0.799779
+
+quad-double precision:   3.54684788788730755014433001709482214e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941924950825738155601359e-09
+full loop time: 130 sec.
+opencl time:    130 sec.
+GQDflop/s:        0.313065
+
+----------------------------------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 1536
+ramda = 1e-30
+N * h = 10
+double precision:        1.185271129057318631180994593539435e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.37646568386018311145841799737094724e-07
+full loop time: 4.19 sec.
+opencl time:    4.19 sec.
+GDflop/s:       32.891356
+
+double-double precision: 2.50043559610091530359750491430782219e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.06130121681658643904190767660255568e-07
+full loop time: 23.2 sec.
+opencl time:    23.2 sec.
+GDDflop/s:        5.935385
+
+triple-double precision: nan
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     nan
+full loop time: 307 sec.
+opencl time:    307 sec.
+GTDflop/s:        0.449091
+
+quad-double precision:   3.55809743750177620378502556270320275e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     3.63937541572553885438702820717953205e-10
+full loop time: 302 sec.
+opencl time:    302 sec.
+GQDflop/s:        0.455851
+
+-----------------------------------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 512
+ramda = 1e-20
+N * h = 10
+double precision:        1.1850690066756156644356510077714661e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.28741734592304402375970120356839443e-07
+full loop time: 0.456 sec.
+opencl time:    0.456 sec.
+GDflop/s:       11.192975
+
+double-double precision: 2.11532379844642007555303336777322263e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.57162554152239612642318843566642230e-08
+full loop time: 2.56 sec.
+opencl time:    2.56 sec.
+GDDflop/s:        1.993078
+
+triple-double precision: 2.47248976243162350060949325986893483e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -3.40983296381241414104852907426157735e-13
+full loop time: 12.7 sec.
+opencl time:    12.7 sec.
+GTDflop/s:        0.402669
+
+quad-double precision:   2.47248976243162350158412302023938578e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -3.40983296381338877080889952521012868e-13
+full loop time: 30.9 sec.
+opencl time:    30.9 sec.
+GQDflop/s:        0.165082
+
+------------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 1024
+ramda = 1e-20
+N * h = 10
+double precision:        1.1786499987079746238976488831307066e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29383635389068506429770332820915401e-07
+full loop time: 1.85 sec.
+opencl time:    1.85 sec.
+GDflop/s:       22.071147
+
+double-double precision: 2.11964036570355145238332593881949939e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.52845986895108235812026272520364529e-08
+full loop time: 10.3 sec.
+opencl time:    10.3 sec.
+GDDflop/s:        3.974182
+
+triple-double precision: 2.47248635217083569854912076795037664e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     4.27823989646231443389483928066548607e-17
+full loop time: 51 sec.
+opencl time:    51 sec.
+GTDflop/s:        0.799719
+
+quad-double precision:   2.47248635217083570183809888430037398e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     4.27823986357253327039486597054958669e-17
+full loop time: 130 sec.
+opencl time:    130 sec.
+GQDflop/s:        0.313343
+
+-----------------------------------------------------------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.nvidia 
+N = 1536
+ramda = 1e-20
+N * h = 10
+double precision:        1.185271129057318631180994593539435e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.28721522354134105701435761780042554e-07
+full loop time: 4.19 sec.
+opencl time:    4.19 sec.
+GDflop/s:       32.878416
+
+double-double precision: 2.12701907872419542186455517388469636e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.45467273874464266330797037455167924e-08
+full loop time: 23.2 sec.
+opencl time:    23.2 sec.
+GDDflop/s:        5.936968
+
+triple-double precision: nan
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     nan
+full loop time: 307 sec.
+opencl time:    307 sec.
+GTDflop/s:        0.449018
+
+quad-double precision:   2.47248635259915388878904495605871694e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -4.94200593692744718856369040040167825e-20
+full loop time: 302 sec.
+opencl time:    302 sec.
+GQDflop/s:        0.456723
+
+-----------------------------------------------------
+
+(Xeon)
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.intel 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38642288573702701500321659253168361e-07
+full loop time: 0.218 sec.
+opencl time:    0.218 sec.
+GDflop/s:       23.399677
+
+double-double precision: 2.46700796142038714941920467435380244e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459322020791655659096e-07
+full loop time: 12.6 sec.
+opencl time:    12.6 sec.
+GDDflop/s:        0.404027
+
+triple-double precision: 3.55164017705161202141794817460176160e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.00966358658897212214644163086206768e-09
+full loop time: 113 sec.
+opencl time:    113 sec.
+GTDflop/s:        0.045098
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 163 sec.
+opencl time:    163 sec.
+GQDflop/s:        0.031254
+
+-------------------------------------------
+
+nakamura@tesla:./compile.bash 
+nakamura@tesla:./main.intel 
+N = 1024
+ramda = 1e-30
+N * h = 10
+double precision:        1.1727271017391030419398540449518742e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38900971117839870069955854595850809e-07
+full loop time: 1.72 sec.
+opencl time:    1.72 sec.
+GDflop/s:       23.708995
+
+double-double precision: 2.47997598189444856136804521137572826e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08176083102305318127136737953461192e-07
+full loop time: 101 sec.
+opencl time:    101 sec.
+GDDflop/s:        0.402243
+
+triple-double precision: 3.54684788788730755035739593854205718e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941922820166523683250926e-09
+full loop time: 903 sec.
+opencl time:    903 sec.
+GTDflop/s:        0.045190
+
+quad-double precision:   3.54684788788730755014433001709482214e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.48889250301941924950825738155601359e-09
+full loop time: 1.33e+03 sec.
+opencl time:    1.33e+03 sec.
+GQDflop/s:        0.030615
+
+
+
+
+
+-2013/06/06
+TD local: -
+TD ocl arith.: -
+QD ocl arith.: -
+
+(Cayman)
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38642288573702701500321659253168361e-07
+full loop time: 0.579 sec.
+opencl time:    0.578 sec.
+GDflop/s:       8.833521
+
+double-double precision: 2.46700796142038714941920467435380244e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459322020791655659096e-07
+full loop time: 2.71 sec.
+opencl time:    2.71 sec.
+GDDflop/s:        1.881877
+
+triple-double precision: 3.55227452445246279721495201068134337e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894542446058022903890920e-10
+full loop time: 65.8 sec.
+opencl time:    65.8 sec.
+GTDflop/s:        0.077597
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 129 sec.
+opencl time:    128 sec.
+GQDflop/s:        0.039713
+
+-------------------
+
+FMAあり
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38642288573702701500321659253168361e-07
+full loop time: 0.582 sec.
+opencl time:    0.581 sec.
+GDflop/s:       8.787830
+
+double-double precision: 2.46700796142038714941920467435380244e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459322020791655659096e-07
+full loop time: 2.71 sec.
+opencl time:    2.71 sec.
+GDDflop/s:        1.885336
+
+triple-double precision: 3.55227452445246279721495201068134337e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894542446058022903890920e-10
+full loop time: 31.2 sec.
+opencl time:    31.2 sec.
+GTDflop/s:        0.163347
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 55.6 sec.
+opencl time:    55.6 sec.
+GQDflop/s:        0.091803
+
+--------------------------
+TD local: -
+TD ocl arith.: short-renorm4(add, sub), no-renorm4(mul, div)
+QD ocl arith.: -
+
+FMAあり
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-30
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38642288573702701500321659253168361e-07
+full loop time: 0.58 sec.
+opencl time:    0.579 sec.
+GDflop/s:       8.809862
+
+double-double precision: 2.46700796142038714941920467435380244e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.09472885149711459322020791655659096e-07
+full loop time: 2.81 sec.
+opencl time:    2.8 sec.
+GDDflop/s:        1.819488
+
+triple-double precision: 3.55227452445246279657904982829289017e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894606036276261749210568e-10
+full loop time: 12.4 sec.
+opencl time:    12.4 sec.
+GTDflop/s:        0.411653
+
+quad-double precision:   3.55227452445246279666053271292505340e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     9.46228846503894597887987798532887434e-10
+full loop time: 55.8 sec.
+opencl time:    55.8 sec.
+GQDflop/s:        0.091422
+
+--------------------------------
+
+N*h の違いによる比較
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-20
+N * h = 10
+double precision:        1.1753139271804747276361959983786987e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29717242541818496055915621296116190e-07
+full loop time: 0.567 sec.
+opencl time:    0.566 sec.
+GDflop/s:       9.011645
+
+double-double precision: 2.11532379844642007585470413977837175e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.57162554152239612340648071561489948e-08
+full loop time: 2.71 sec.
+opencl time:    2.71 sec.
+GDDflop/s:        1.882852
+
+triple-double precision: 2.47248976243162350158412231585819868e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -3.40983296381338877010451833810569563e-13
+full loop time: 12.5 sec.
+opencl time:    12.5 sec.
+GTDflop/s:        0.409043
+
+quad-double precision:   2.47248976243162350158412302023938578e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -3.40983296381338877080889952521012868e-13
+full loop time: 56 sec.
+opencl time:    56 sec.
+GQDflop/s:        0.091149
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 512
+ramda = 1e-20
+N * h = 9
+double precision:        1.1729663108691050996507619901682018e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29952004172955458854459022117165877e-07
+full loop time: 0.579 sec.
+opencl time:    0.579 sec.
+GDflop/s:       8.817809
+
+double-double precision: 2.11618501263739770661376818064422242e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.56301339961261981581584030695595912e-08
+full loop time: 2.71 sec.
+opencl time:    2.71 sec.
+GDDflop/s:        1.885386
+
+triple-double precision: 2.47248574424254429194652395359491407e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     6.08356115396248828257744946500886521e-14
+full loop time: 12.5 sec.
+opencl time:    12.5 sec.
+GTDflop/s:        0.408880
+
+quad-double precision:   2.47248574424254429194652437609943372e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     6.08356115396248827835240426854906034e-14
+full loop time: 55.9 sec.
+opencl time:    55.9 sec.
+GQDflop/s:        0.091341
+
+-----------------------------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 768
+ramda = 1e-20
+N * h = 9
+double precision:        1.1773090532932890799648281438677389e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29517729930537060823052406747212172e-07
+full loop time: 1.28 sec.
+opencl time:    1.28 sec.
+GDflop/s:       13.413616
+
+double-double precision: 2.11877544320336747633098579603680208e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.53710909395292211864366415303042277e-08
+full loop time: 6.22 sec.
+opencl time:    6.22 sec.
+GDDflop/s:        2.766924
+
+triple-double precision: 2.47248636459593104046513137187233475e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -1.19972713522697791605324741812247313e-15
+full loop time: 27.9 sec.
+opencl time:    27.8 sec.
+GTDflop/s:        0.618325
+
+quad-double precision:   2.47248636459593104046513166742130794e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -1.19972713522697794560814473709974730e-15
+full loop time: 126 sec.
+opencl time:    126 sec.
+GQDflop/s:        0.136336
+
+----------------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1024
+ramda = 1e-20
+N * h = 9
+double precision:        1.1796540121524055795452720369481669e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29283234044625410865008017439169362e-07
+full loop time: 2.25 sec.
+opencl time:    2.25 sec.
+GDflop/s:       18.163903
+
+double-double precision: 2.12007263441521903137417836353530739e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.52413718183440656821173847804564603e-08
+full loop time: 10.9 sec.
+opencl time:    10.9 sec.
+GDDflop/s:        3.735828
+
+triple-double precision: 2.47248635252783359576127562582208504e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     7.08260924340765855177755308295038359e-18
+full loop time: 49.6 sec.
+opencl time:    49.6 sec.
+GTDflop/s:        0.822216
+
+quad-double precision:   1.99984431285474648519360102066057398e+302
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -1.99984431285474648519360102066057398e+302
+full loop time: 242 sec.
+opencl time:    242 sec.
+GQDflop/s:        0.168920
+
+----------------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1024
+ramda = 1e-20
+N * h = 13
+double precision:        1.1805866682597306579804362315286315e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     1.29189968433892903021491597981122911e-07
+full loop time: 2.27 sec.
+opencl time:    2.27 sec.
+GDflop/s:       17.964912
+
+double-double precision: 2.12266499099334754018258819909424614e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     3.49821361605312148012764012245593485e-08
+full loop time: 10.9 sec.
+opencl time:    10.9 sec.
+GDDflop/s:        3.755871
+
+triple-double precision: 2.47248628728117591656952689889757801e-07
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     6.53174837716258253124422825639025961e-15
+full loop time: 49.9 sec.
+opencl time:    49.9 sec.
+GTDflop/s:        0.817993
+
+quad-double precision:   2.88866400745685603416853480762082908e+302
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -2.88866400745685603416853480762082908e+302
+full loop time: 240 sec.
+opencl time:    240 sec.
+GQDflop/s:        0.170349
+
+-----------------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1024
+ramda = 1e-30
+N * h = 9
+double precision:        1.1796540121524055795452720369481669e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38208280076509616309414055396221533e-07
+full loop time: 2.27 sec.
+opencl time:    2.27 sec.
+GDflop/s:       17.990073
+
+double-double precision: 2.48123757133893030772607664363889877e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.08049924157857143491333594727148843e-07
+full loop time: 10.9 sec.
+opencl time:    10.9 sec.
+GDDflop/s:        3.731422
+
+triple-double precision: 3.46025459002636300709565793970511336e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.01482222891138735543754651205268913e-08
+full loop time: 50 sec.
+opencl time:    50 sec.
+GTDflop/s:        0.815800
+
+quad-double precision:   1.99984431285474648519360102066057398e+302
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     -1.99984431285474648519360102066057398e+302
+full loop time: 240 sec.
+opencl time:    240 sec.
+GQDflop/s:        0.170275
+
+-------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1024
+ramda = 1e-30
+N * h = 13
+double precision:        1.1805866682597306579804362315286315e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     2.38115014465777108465897635938175081e-07
+full loop time: 2.26 sec.
+opencl time:    2.26 sec.
+GDflop/s:       18.058009
+
+double-double precision: 2.48899813285143788893537388929965939e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     1.07273868006606385370403870161071469e-07
+full loop time: 10.9 sec.
+opencl time:    10.9 sec.
+GDDflop/s:        3.750638
+
+triple-double precision: 3.55491676951846101260028615205207634e-07
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     6.82004339904073003912643885830593406e-10
+full loop time: 49.7 sec.
+opencl time:    49.7 sec.
+GTDflop/s:        0.821757
+
+quad-double precision:   2.88866400745685603416853480762082908e+302
+analytical answer:       3.56173681291750174263941259091038228e-07
+error to analytical:     -2.88866400745685603416853480762082908e+302
+full loop time: 239 sec.
+opencl time:    239 sec.
+GQDflop/s:        0.170726
+
+--------------------------
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 2048
+ramda = 1e-20
+N * h = 9
+triple-double precision: 2.64722981156734071898940214367660906e+303
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -2.64722981156734071898940214367660906e+303
+full loop time: 237 sec.
+opencl time:    237 sec.
+GTDflop/s:        1.375188
+
+
+nakamura@bull:./compile.bash 
+nakamura@bull:./main.amd 
+N = 1536
+ramda = 1e-20
+N * h = 9
+triple-double precision: 6.78152334294974934791958224699725223e+302
+analytical answer:       2.47248635259865968819535221133986057e-07
+error to analytical:     -6.78152334294974934791958224699725223e+302
+full loop time: 131 sec.
+opencl time:    131 sec.
+GTDflop/s:        1.050750
+
