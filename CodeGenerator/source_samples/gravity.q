@@ -1,0 +1,12 @@
+VARI xi, yi, zi, e2, rsqrt ;
+VARJ xj, yj, zj, mj ;
+VARF ax, ay, az;
+VAR dx,dy,dz,r1i,af;
+dx = xj - xi;
+dy = yj - yi;
+dz = zj - zi;
+r1i = rsqrt;
+af = mj*r1i * mj*r1i * mj*r1i;
+ax = ax + af*dx;
+ay = ay + af*dy;
+az = az + af*dz;
