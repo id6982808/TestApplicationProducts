@@ -7,6 +7,25 @@ npm init
 メインファイルはindex.js
 サブでget_file_by_ftp.js、get_path_from_db.js
 
+==index.js==
+var express = require('express');
+var mod_ftp = require('./get_file_by_ftp');
+var mod_db = require('./get_path_from_db');
+
+var web_api_server = express();
+
+web_api_server.get('/webapi/getpicture', function(req, res) {
+  mod_db.get_path();
+  mod_ftp.get_file();
+  
+  res.send('Hello world.');
+});
+
+web_api_server.listen(60000, function() {
+  console.log('call api.');
+});
+==
+
 https://stackoverflow.com/questions/9540978/nodejs-how-to-read-and-output-jpg-image
 res.writeHead(200, {'Content-Type': 'text/html'});
 res.write('<html><body><img src="data:image/jpeg;base64,')
