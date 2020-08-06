@@ -1,0 +1,6 @@
+mkdir webapi/
+cd webapi/
+npm init
+
+メインファイルはindex.js
+サブでget_file_by_ftp.js、get_path_from_db.js
