@@ -1,0 +1,71 @@
+※APIは画面がないのでAHSは不要、spring bootはtomcatが組み込まれているので別途tomcatインストール不要、javaのみ必要
+※デフォルトコンテナがtomcat
+open jdk 1.8?
+
+※ahsとtomcat連携
+https://weblabo.oscasierra.net/tomcat-mod-proxy-ajp/
+
+※組み込みtomcatの設定変更
+http://yo1000.hateblo.jp/entry/2015/05/11/172626
+
+※application.properties
+https://docs.spring.io/spring-boot/docs/1.4.x/reference/html/common-application-properties.html
+
+※組み込みtomcatのメモリヒープサイズ変更
+実行時
+java -jar -Xms4048m app.jar
+
+spring boot2ならmavenで
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <jvmArguments>              
+            -Xms4048m
+            -Xmx8096m
+        </jvmArguments>
+    </configuration>
+</plugin>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+       ....
+
+    <properties>
+        <jvmArgs>-Xms512m -Xmx2048m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</jvmArgs>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>${jvmArgs}</jvmArguments>
+                    <addResources>false</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+組み込みtomcatログ設定
+https://qiita.com/NagaokaKenichi/items/34356c72e8ac0279e1a0
+出力場所？
+application.properties:
+アクセスログ
+server.tomcat.accesslog.enabled=true
+server.tomcat.accesslog.directory=
+サーバログ
+logging.path=
+logging.level.org.apache.tomcat=DEBUG
+logging.level.org.apache.catalina=DEBUG
+
+
+
+
+
