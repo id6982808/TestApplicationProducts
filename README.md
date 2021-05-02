@@ -1,16 +1,17 @@
 # TestApplicationProducts
+以下複数プロジェクトを管理。
 
-# Chapter03001
+## Chapter03001
 JavaAPI復習用レポジトリ
 
-# CodeGenerator
+## CodeGenerator
 OpenCLカーネル生成用ジェネレータ(仮)
 
-# FeynmanIntegralOpenCL
+## FeynmanIntegralOpenCL
 ファインマンループ積分のOpenCLカーネル化
 
-# QdGemm
+## QdGemm
 8倍精度GEMMのOpenCLカーネル化
 
-# xspim_code
+## xspim_code
 アセンブラ、VerilogHDLの学習用コード
