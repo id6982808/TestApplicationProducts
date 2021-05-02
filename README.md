@@ -2,7 +2,7 @@
 以下複数プロジェクトを管理。
 
 ## Chapter03001
-JavaAPI復習用レポジトリ
+JavaAPI学習用コード
 
 ## CodeGenerator
 OpenCLカーネル生成用ジェネレータ(仮)
